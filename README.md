@@ -1,6 +1,6 @@
 # Wenlock Frontend
 
-![Wenlock Logo](https://example.com/logo.png) <!-- Substitua com o caminho do logo caso tenha -->
+![Wenlock Logo](../wenlock-front/public/logo2.png) 
 
 ## Descrição
 
