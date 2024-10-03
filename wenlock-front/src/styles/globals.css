@@ -1,0 +1,7 @@
+/* /src/styles/globals.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Adicione essas regras ao seu arquivo global de estilos ou ajuste conforme necessário */
+

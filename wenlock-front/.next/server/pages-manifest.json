@@ -1,0 +1,9 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/dashboard/usuarios": "pages/dashboard/usuarios.js",
+  "/dashboard/editar-usuario": "pages/dashboard/editar-usuario.js",
+  "/dashboard": "pages/dashboard.js",
+  "/dashboard/cadastrar-usuario": "pages/dashboard/cadastrar-usuario.js"
+}
