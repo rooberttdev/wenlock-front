@@ -1,6 +1,6 @@
 # Wenlock Frontend
 
-![Wenlock Logo](../wenlock-front/public/logo2.png) 
+![Wenlock Logo](/wenlock-front/public/logo2.png) 
 
 ## Descrição
 
