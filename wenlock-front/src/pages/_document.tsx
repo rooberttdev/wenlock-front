@@ -5,8 +5,8 @@ class MyDocument extends Document {
     return (
       <Html lang="pt-br">
         <Head>
+        <title>WenLock</title>
         <link rel="icon" href="/favicon.png" sizes="32x32" />
-        <meta name="description" content="WenLock" />
         </Head>
         <body>
           <Main />
