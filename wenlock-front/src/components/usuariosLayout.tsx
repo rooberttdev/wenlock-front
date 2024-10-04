@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { toast } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchUsers as apiFetchUsers, deleteUser } from '@/api/api'; 
+import Loader from './loader';
 
 interface User {
   id: number;
@@ -86,7 +87,7 @@ const UsuariosPage: React.FC = () => {
   }, []);
 
   if (isLoading) {
-    return <p>Carregando...</p>;
+    return <Loader/>;
   }
 
   return (
