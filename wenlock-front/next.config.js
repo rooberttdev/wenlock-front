@@ -4,7 +4,7 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/', // Acessar a raiz redireciona para o dashboard
+        source: '/', 
         destination: '/dashboard',
         permanent: true,
       },

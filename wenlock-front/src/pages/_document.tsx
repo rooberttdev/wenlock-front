@@ -4,7 +4,10 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="pt-br">
-        <Head />
+        <Head>
+        <link rel="icon" href="/favicon.png" sizes="32x32" />
+        <meta name="description" content="WenLock" />
+        </Head>
         <body>
           <Main />
           <NextScript />
