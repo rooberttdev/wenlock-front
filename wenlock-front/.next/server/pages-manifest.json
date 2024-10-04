@@ -1,9 +1,1 @@
-{
-  "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/dashboard/usuarios": "pages/dashboard/usuarios.js",
-  "/dashboard/cadastrar-usuario": "pages/dashboard/cadastrar-usuario.js",
-  "/login": "pages/login.js",
-  "/dashboard": "pages/dashboard.js"
-}
+{"/_app":"pages/_app.js","/_error":"pages/_error.js","/_document":"pages/_document.js","/dashboard":"pages/dashboard.html","/dashboard/cadastrar-usuario":"pages/dashboard/cadastrar-usuario.html","/dashboard/editar-usuario":"pages/dashboard/editar-usuario.html","/login":"pages/login.html","/dashboard/usuarios":"pages/dashboard/usuarios.html","/404":"pages/404.html"}
