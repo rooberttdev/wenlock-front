@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { fetchUserById, updateUser } from '@/api/api';
 
 const EditarUsuario: React.FC = () => {
   const router = useRouter();
-  const { id } = router.query; // Obtenha o id da query string
-  const userId = Array.isArray(id) ? id[0] : id; // Converte para string se for um array
+  const { id } = router.query; 
+  const userId = Array.isArray(id) ? id[0] : id;
 
   const [user, setUser] = useState({
     nome: '',
@@ -19,40 +20,35 @@ const EditarUsuario: React.FC = () => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Função para buscar o usuário pelo ID
-  const fetchUserById = async (userId: string) => {
-    try {
-      const response = await fetch(`http://localhost:3001/users/${userId}`);
-      const data = await response.json();
-      setUser({
-        nome: data.name,
-        email: data.email,
-        matricula: data.registration_number,
-        senha: '',
-        repetirSenha: '',
-      });
-    } catch (error) {
-      console.error('Erro ao buscar usuário:', error);
-    }
-  };
 
   useEffect(() => {
     if (userId) {
-      fetchUserById(userId); // Busca os dados do usuário se o ID estiver disponível
+      const loadUserData = async () => {
+        try {
+          const userData = await fetchUserById(userId);
+          setUser({
+            nome: userData.name, 
+            email: userData.email, 
+            matricula: userData.registration_number, 
+            senha: '', 
+            repetirSenha: '', 
+          });
+        } catch (error) {
+          console.error('Erro ao carregar os dados do usuário:', error);
+          setErrorMessage('Erro ao carregar os dados do usuário.');
+        }
+      };
+      loadUserData();
     }
   }, [userId]);
 
-  // Função para validar o formulário em tempo real
   useEffect(() => {
     const validateForm = () => {
       let isValid = true;
 
-      // Verifica se todos os campos obrigatórios estão preenchidos
       if (!user.nome || !user.email || !user.matricula) {
         isValid = false;
       }
-
-      // Validação das senhas
       if (user.senha && user.senha !== user.repetirSenha) {
         isValid = false;
         setErrorMessage('As senhas não coincidem.');
@@ -65,7 +61,6 @@ const EditarUsuario: React.FC = () => {
     validateForm();
   }, [user.senha, user.repetirSenha, user.nome, user.email, user.matricula]);
 
-  // Função para atualizar os dados do formulário
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser({
@@ -74,28 +69,16 @@ const EditarUsuario: React.FC = () => {
     });
   };
 
-  // Função para enviar os dados atualizados
   const handleSubmit = async () => {
-    if (isFormValid) {
+    if (isFormValid &&  userId) {
       try {
-        const response = await fetch(`http://localhost:3001/users/${userId}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: user.nome,
-            email: user.email,
-            registration_number: user.matricula,
-            password: user.senha,
-          }),
+        await updateUser(userId, {
+          name: user.nome,
+          email: user.email,
+          registration_number: user.matricula,
+          password: user.senha,
         });
-        if (response.ok) {
-          // Redireciona para a lista de usuários após a atualização
-          router.push('/dashboard/usuarios');
-        } else {
-          setErrorMessage('Erro ao atualizar usuário. Tente novamente.');
-        }
+        router.push('/dashboard/usuarios');
       } catch (error: unknown) {
         if (error instanceof Error) {
           setErrorMessage('Erro ao atualizar usuário: ' + error.message);
@@ -119,10 +102,7 @@ const EditarUsuario: React.FC = () => {
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-black">Editar Usuário</h1>
         </div>
-
         {errorMessage && <p className="text-red-600 mb-4">{errorMessage}</p>}
-
-        {/* Formulário para edição */}
         <div className="mb-4">
           <div className="text-lg font-bold mb-2">Dados do Usuário</div>
           <hr className="border-gray-400 mb-4" />

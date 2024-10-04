@@ -3,7 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/dashboard/usuarios": "pages/dashboard/usuarios.js",
-  "/dashboard/editar-usuario": "pages/dashboard/editar-usuario.js",
-  "/dashboard": "pages/dashboard.js",
-  "/dashboard/cadastrar-usuario": "pages/dashboard/cadastrar-usuario.js"
+  "/dashboard/cadastrar-usuario": "pages/dashboard/cadastrar-usuario.js",
+  "/login": "pages/login.js",
+  "/dashboard": "pages/dashboard.js"
 }

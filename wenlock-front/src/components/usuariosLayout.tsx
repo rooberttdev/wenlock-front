@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link'; 
 import { toast } from 'react-toastify'; 
-import 'react-toastify/dist/ReactToastify.css'; 
+import 'react-toastify/dist/ReactToastify.css';
+import { fetchUsers as apiFetchUsers, deleteUser } from '@/api/api'; 
 
 interface User {
   id: number;
@@ -21,18 +22,11 @@ const UsuariosPage: React.FC = () => {
   const [userToDelete, setUserToDelete] = useState<User | null>(null); 
 
   const fetchUsers = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/users');
-      const data = await response.json();
-      setUsers(Array.isArray(data) ? data : []);
-      setFilteredUsers(Array.isArray(data) ? data : []); 
-    } catch (error) {
-      console.error('Erro ao buscar usuários:', error);
-      setUsers([]); 
-      setFilteredUsers([]); 
-    } finally {
+      const data = await apiFetchUsers();
+      setUsers(data); 
+      setFilteredUsers(data); 
       setIsLoading(false);
-    }
+    
   };
 
   const handleSearch = (term: string) => {
@@ -55,24 +49,17 @@ const UsuariosPage: React.FC = () => {
   const confirmDelete = async () => {
     if (userToDelete) {
       try {
-        const response = await fetch(`http://localhost:3001/users/${userToDelete.id}`, {
-          method: 'DELETE',
-        });
-
-        if (response.ok) {
-          setUsers(users.filter((user) => user.id !== userToDelete.id)); 
-          setFilteredUsers(filteredUsers.filter((user) => user.id !== userToDelete.id)); 
-        } else {
-          console.error('Erro ao deletar o usuário');
-          toast.error('Erro ao excluir o usuário.'); 
-        }
+        await deleteUser(userToDelete.id);
+        setUsers(users.filter((user) => user.id !== userToDelete.id)); 
+        setFilteredUsers(filteredUsers.filter((user) => user.id !== userToDelete.id)); 
       } catch (error) {
-        console.error('Erro ao deletar o usuário:', error);
+        console.error('Erro ao deletar o usuário');
         toast.error('Erro ao excluir o usuário.'); 
       }
     }
     closeDeleteModal();
   };
+
 
 
   const closeDeleteModal = () => {

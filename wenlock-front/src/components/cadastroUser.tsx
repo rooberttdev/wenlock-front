@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { registerUser } from '@/api/api';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8888/api';
 
 const CadastroUsuario: React.FC = () => {
   const router = useRouter();
@@ -85,30 +88,16 @@ const CadastroUsuario: React.FC = () => {
   const handleSubmit = async () => {
     if (isFormValid) {
       try {
-        const response = await fetch('http://localhost:3001/users', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: nome,
-            email,
-            registration_number: matricula,
-            password: senha,
-          }),
+        await registerUser({
+          name: nome,
+          email,
+          registration_number: matricula,
+          password: senha,
         });
 
-        if (response.ok) {
-          router.push('/dashboard/usuarios');
-        } else {
-          setErrorMessage('Erro ao cadastrar usuário. Tente novamente.');
-        }
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          setErrorMessage('Erro ao cadastrar usuário: ' + error.message);
-        } else {
-          setErrorMessage('Erro desconhecido ao cadastrar usuário.');
-        }
+        router.push('/dashboard/usuarios');
+      } catch (error) {
+        setErrorMessage('Erro ao cadastrar usuário. Tente novamente.');
       }
     }
   };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppProps } from 'next/app';
-import '../styles/globals.css'; // Importa estilos do Tailwind
+import '../styles/globals.css'; 
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return <Component {...pageProps} />;
