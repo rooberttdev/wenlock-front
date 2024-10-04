@@ -4,7 +4,7 @@
 
 ## Descrição
 
-O **Wenlock Frontend** é a interface do usuário do projeto Wenlock, desenvolvida para proporcionar uma experiência de usuário amigável e intuitiva. Este frontend se comunica com o backend do Wenlock para realizar operações de CRUD (Criação, Leitura, Atualização e Exclusão) de usuários, autenticação e outras funcionalidades.
+O **Wenlock Frontend** é a interface do usuário do projeto Wenlock, desenvolvida para proporcionar uma experiência de usuário amigável e intuitiva. Este frontend se comunica com o backend do Wenlock para realizar operações de CRUD (CREATE, READ, UPDATE e DELETE) de usuários e outras funcionalidades. [WenLock](https://wenlock-front.vercel.app/) em produção.
 
 ## Tecnologias Utilizadas
 
@@ -16,10 +16,10 @@ O **Wenlock Frontend** é a interface do usuário do projeto Wenlock, desenvolvi
   
 ## Pré-requisitos
 
-Antes de começar, você precisará ter as seguintes ferramentas instaladas em sua máquina:
-
-- [Node.js](https://nodejs.org/en/) (>=16)
-- [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
+- [Node.js](https://nodejs.org/en/) 
+- [npm](https://www.npmjs.com/)
+- [Next.js](https://nextjs.org/)
+- [Tailwindcss](https://tailwindcss.com/)
 
 ## Instalação
 
@@ -34,14 +34,12 @@ Antes de começar, você precisará ter as seguintes ferramentas instaladas em s
 2. **Instale as depedências**
    ```bash
     npm install
-    # ou
-    yarn install
+
    
 2. **Iniciar o servidor de desenvolvimento**
    ```bash
     npm start
-    # ou
-    yarn start
+    
 
 
 
